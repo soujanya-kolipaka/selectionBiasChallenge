@@ -194,13 +194,13 @@ create_statistics_meme(
 )
 
 # Display the final meme
-import matplotlib.image as mpimg
-fig, ax = plt.subplots(figsize=(16, 4))
-img = mpimg.imread("my_statistics_meme.png")
-ax.imshow(img)
-ax.axis('off')
-plt.tight_layout()
-plt.show()
+#import matplotlib.image as mpimg
+#fig, ax = plt.subplots(figsize=(16, 4))
+#img = mpimg.imread("my_statistics_meme.png")
+#ax.imshow(img)
+#ax.axis('off')
+#plt.tight_layout()
+#plt.show()
 ```
 
 ```{python}
@@ -210,7 +210,7 @@ plt.show()
 
 # Display the final meme
 import matplotlib.image as mpimg
-fig, ax = plt.subplots(figsize=(16, 4))
+fig, ax = plt.subplots(figsize=(8, 5))
 img = mpimg.imread("my_statistics_meme.png")
 ax.imshow(img)
 ax.axis('off')
