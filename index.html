@@ -67,99 +67,6 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="selection-bias-missing-data-challenge" class="level1">
 <h1>🎨 Selection Bias &amp; Missing Data Challenge</h1>
-<div id="cell-step1-prepare" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-stdout">
-<pre><code>Resized image from (1600, 1200) to (512, 384) for processing
-Final image shape: (512, 384) (should be 2D for grayscale)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div id="step1-prepare" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/step1-prepare-output-2.png" width="336" height="470" class="figure-img"></p>
-<figcaption>Original image prepared for processing</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-step2-stipple" class="cell" data-message="false" data-execution_count="2">
-<div class="cell-output cell-output-stdout">
-<pre><code>Importance map computed
-Generating blue noise stippling pattern...
-Generated 15728 stipple points
-Stipple pattern shape: (512, 384)
-Number of stippled points (0.0 values): 15728
-Number of background points (1.0 values): 180880</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div id="step2-stipple" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/step2-stipple-output-2.png" width="336" height="470" class="figure-img"></p>
-<figcaption>Blue noise stippling pattern</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-step3-tonal" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-stdout">
-<pre><code>Created tonal analysis: grid 16×12
-Tonal statistics: mean=0.550, std=0.249
-Tone range: [0.095, 0.909]</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div id="step3-tonal" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/step3-tonal-output-2.png" width="404" height="470" class="figure-img"></p>
-<figcaption>Box-averaged tonal analysis showing brightness distribution</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-📊 Tonal Statistics for Parameter Tuning:
-  Mean brightness: 0.550
-  Standard deviation: 0.249
-  Brightness range: [0.095, 0.909]
-
-💡 Tuning Tips:
-  - If mean &lt; 0.4: Image is dark, consider lowering extreme_threshold_low
-  - If mean &gt; 0.6: Image is light, consider raising extreme_threshold_high
-  - If std &gt; 0.2: High contrast, may need stronger extreme_downweight
-  - Use mid_tone_center around 0.55 to emphasize average tones</code></pre>
-</div>
-</div>
-<div id="cell-step4-block-letter" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div id="step4-block-letter" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/step4-block-letter-output-1.png" width="421" height="470" class="figure-img"></p>
-<figcaption>Block letter S representing selection bias</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-step5-masked" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div id="step5-masked" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/step5-masked-output-1.png" width="464" height="470" class="figure-img"></p>
-<figcaption>Masked stippled image showing selection bias effect</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-create-final-meme" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-stdout">
-<pre><code>Statistics meme saved to: my_statistics_meme.png</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div id="create-final-meme" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/create-final-meme-output-2.png" width="1363" height="374" class="figure-img"></p>
-<figcaption>Statistics meme demonstrating selection bias</figcaption>
-</figure>
-</div>
-</div>
-</div>
 <div id="cell-final-meme" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div id="final-meme" class="quarto-figure quarto-figure-center anchored">
@@ -170,7 +77,8 @@ Tone range: [0.095, 0.909]</code></pre>
 </div>
 </div>
 </div>
-<p><strong>Explanation:</strong> This meme illustrates selection bias by showing how systematic missing data distorts our view of reality. The original image (Reality) represents the true population, the stippled image (Your Model) shows our sampled data, and the masked version (Estimate) reveals how systematic data loss—represented by the “S” pattern—creates a biased estimate that no longer reflects the true population, just as non-random missing data in research can lead to incorrect conclusions.</p>
+<p><strong>Explanation:</strong></p>
+<p>This meme illustrates selection bias by showing how systematic missing data distorts our view of reality. The original image (Reality) represents the true population, the stippled image (Your Model) shows our sampled data, and the masked version (Estimate) reveals how systematic data loss—represented by the “S” pattern—creates a biased estimate that no longer reflects the true population, just as non-random missing data in research can lead to incorrect conclusions.</p>
 </section>
 
 </main>
