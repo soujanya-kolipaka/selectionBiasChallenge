@@ -1,0 +1,204 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Selection Bias & Missing Data Challenge\"\n",
+        "subtitle: \"Creating a Statistics Meme: Write Your Own Functions\"\n",
+        "format:\n",
+        "  html: default\n",
+        "execute:\n",
+        "  echo: false\n",
+        "  eval: true\n",
+        "---\n",
+        "\n",
+        "# 🎨 Selection Bias & Missing Data Challenge"
+      ],
+      "id": "25ab5b52"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: step1-prepare\n",
+        "#| echo: false\n",
+        "#| eval: true\n",
+        "#| include: false\n",
+        "\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "from step1_prepare_image import prepare_image\n",
+        "\n",
+        "# Load and prepare the image\n",
+        "img_path = 'profilepic.jpeg'\n",
+        "gray_image = prepare_image(img_path, max_size=512)"
+      ],
+      "id": "step1-prepare",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: step2-stipple\n",
+        "#| echo: false\n",
+        "#| eval: true\n",
+        "#| include: false\n",
+        "#| warning: false\n",
+        "\n",
+        "from step2_create_stipple import create_stipple\n",
+        "\n",
+        "# Create stippled image\n",
+        "stipple_pattern, samples = create_stipple(\n",
+        "    gray_image,\n",
+        "    percentage=0.08,\n",
+        "    sigma=0.9,\n",
+        "    content_bias=0.9,\n",
+        "    noise_scale_factor=0.1,\n",
+        "    extreme_downweight=0.5,\n",
+        "    extreme_threshold_low=0.2,\n",
+        "    extreme_threshold_high=0.8,\n",
+        "    extreme_sigma=0.1\n",
+        ")"
+      ],
+      "id": "step2-stipple",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: step3-tonal\n",
+        "#| echo: false\n",
+        "#| eval: false\n",
+        "#| include: false\n",
+        "# Optional tonal analysis - not needed for final meme"
+      ],
+      "id": "step3-tonal",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: step4-block-letter\n",
+        "#| echo: false\n",
+        "#| eval: true\n",
+        "#| include: false\n",
+        "\n",
+        "import importlib\n",
+        "import step4_create_block_letter\n",
+        "importlib.reload(step4_create_block_letter)\n",
+        "from step4_create_block_letter import create_block_letter_s\n",
+        "\n",
+        "# Get image dimensions\n",
+        "h, w = gray_image.shape\n",
+        "\n",
+        "# Create block letter S\n",
+        "block_letter = create_block_letter_s(h, w, letter=\"S\", font_size_ratio=0.9)"
+      ],
+      "id": "step4-block-letter",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: step5-masked\n",
+        "#| echo: false\n",
+        "#| eval: true\n",
+        "#| include: false\n",
+        "\n",
+        "from step5_create_masked import create_masked_stipple\n",
+        "\n",
+        "# Create masked stippled image\n",
+        "masked_stipple = create_masked_stipple(\n",
+        "    stipple_pattern,\n",
+        "    block_letter,\n",
+        "    threshold=0.5\n",
+        ")"
+      ],
+      "id": "step5-masked",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: create-final-meme\n",
+        "#| echo: false\n",
+        "#| eval: true\n",
+        "#| include: false\n",
+        "\n",
+        "import importlib\n",
+        "import create_meme\n",
+        "importlib.reload(create_meme)\n",
+        "from create_meme import create_statistics_meme\n",
+        "\n",
+        "# Create the final meme\n",
+        "create_statistics_meme(\n",
+        "    original_img=gray_image,\n",
+        "    stipple_img=stipple_pattern,\n",
+        "    block_letter_img=block_letter,\n",
+        "    masked_stipple_img=masked_stipple,\n",
+        "    output_path=\"my_statistics_meme.png\",\n",
+        "    dpi=150,\n",
+        "    background_color=\"white\"\n",
+        ")"
+      ],
+      "id": "create-final-meme",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: final-meme\n",
+        "#| echo: false\n",
+        "#| fig-cap: Statistics meme demonstrating selection bias\n",
+        "\n",
+        "# Display the final meme\n",
+        "import matplotlib.image as mpimg\n",
+        "fig, ax = plt.subplots(figsize=(16, 4))\n",
+        "img = mpimg.imread(\"my_statistics_meme.png\")\n",
+        "ax.imshow(img)\n",
+        "ax.axis('off')\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ],
+      "id": "final-meme",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Explanation:**\n",
+        "\n",
+        "This meme illustrates selection bias by showing how systematic missing data distorts our view of reality. The original image (Reality) represents the true population, the stippled image (Your Model) shows our sampled data, and the masked version (Estimate) reveals how systematic data loss—represented by the \"S\" pattern—creates a biased estimate that no longer reflects the true population, just as non-random missing data in research can lead to incorrect conclusions.\n"
+      ],
+      "id": "71ad6c23"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "c:\\soujanya\\venv\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
